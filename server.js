@@ -1,3 +1,4 @@
+require('dotenv').config();
 import express from 'express';
 import cors from 'cors';
 import fetch from 'node-fetch';
@@ -17,4 +18,10 @@ app.listen(port, () => {
 app.get('/weather', async (req, res) => {
     const city = req.body.city;
     const country = req.body.country;
+    const apiKey = process.env.API_KEY;
+    let locationQuery = city;
+    if(country){
+        locationQuery += `,${country}`;
+    }
+    
 });
