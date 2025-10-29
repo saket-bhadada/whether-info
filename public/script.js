@@ -19,5 +19,4 @@ searchForm.addEventListener('submit', async (e) => {
 });
 
 async function getWeather(city){
-    const apiurl
 }
