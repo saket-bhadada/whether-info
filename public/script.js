@@ -23,4 +23,25 @@ async function getWeather(city,country){
     if(country){
         apiurl += `$country=${country}`;
      }
-    }
+     try{
+        weatherDisplay.style.display = 'none';
+        errorMessage.style.display = 'none';
+        const response = await fetch(apiurl);
+        if(!response.ok){
+            const errorData = await response.json();
+            throw new Error(errorData.message || `location not found`);
+        }
+        const data = await response.json();
+     }catch(error){}
+}
+
+function displayWeather(data){
+    const city = data.name;
+    const iconcode = data.weather[0].icon;
+    const temp = data.main.temp;
+    const desc = data.weather[0].description;
+    const humidityValue = data.main.humidity;
+    const windSpeed = data.wind.speed;
+
+    city 
+}
