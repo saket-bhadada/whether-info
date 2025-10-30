@@ -14,9 +14,13 @@ searchForm.addEventListener('submit', async (e) => {
     event.preventDefault();
     const city = cityInput.value.trim();
     if(city){
-        await getWeather(city);
+        await getWeather(city,country);
     }
 });
 
-async function getWeather(city){
-}
+async function getWeather(city,country){
+    const apiurl = `http://localhost:3000/weather?city=${city}`;
+    if(country){
+        apiurl += `$country=${country}`;
+     }
+    }
