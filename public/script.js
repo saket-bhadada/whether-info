@@ -11,8 +11,9 @@ const humidity = document.getElementById('humidity');
 const wind = document.getElementById('wind');
 
 searchForm.addEventListener('submit', async (e) => {
-    event.preventDefault();
+    e.preventDefault();
     const city = cityInput.value.trim();
+    const country = document.getElementById('country-input').value.trim();
     if(city){
         await getWeather(city,country);
     }
@@ -21,7 +22,7 @@ searchForm.addEventListener('submit', async (e) => {
 async function getWeather(city,country){
     const apiurl = `http://localhost:3000/weather?city=${city}`;
     if(country){
-        apiurl += `$country=${country}`;
+        apiurl += `&country=${country}`;
      }
      try{
         weatherDisplay.style.display = 'none';
@@ -32,16 +33,33 @@ async function getWeather(city,country){
             throw new Error(errorData.message || `location not found`);
         }
         const data = await response.json();
-     }catch(error){}
+        displayWeather(data);
+     }catch(error){
+        console.error('error fetching wether',error);
+        errorMessage.textContent = error.message;
+        errorMessage.style.display = 'block';
+     }
+     displayWeather(data);
 }
 
 function displayWeather(data){
     const city = data.name;
-    const iconcode = data.weather[0].icon;
-    const temp = data.main.temp;
+    const country = data.sys.country;
+    const temp = `${Math.round(data.main.temp)}°C`;
     const desc = data.weather[0].description;
-    const humidityValue = data.main.humidity;
-    const windSpeed = data.wind.speed;
+    const iconCode = data.weather[0].icon;
+    const hum = `Humidity: ${data.main.humidity}%`;
+    const windSpeed = `Wind: ${data.wind.speed} m/s`;
 
-    city 
+    const iconURL = `http://openweathermap.org/img/w/${iconCode}.png`;
+
+    cityName.textContent = `${city}, ${country}`;
+    temperature.textContent = temp;
+    description.textContent = desc;
+    humidity.textContent = hum;
+    wind.textContent = windSpeed;
+    weatherIcon.src = iconURL;
+
+    weatherDisplay.style.display = 'block';
+    errorMessage.style.display = 'none';
 }
