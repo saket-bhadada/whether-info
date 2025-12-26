@@ -14,16 +14,16 @@ searchForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const city = cityInput.value.trim();
     const country = document.getElementById('country-input').value.trim();
-    if(city){
-        await getWeather(city,country);
+    if (city) {
+        await getWeather(city, country);
     }
 });
 
 async function getWeather(city,country){
-    const apiurl = `http://localhost:3000/weather?city=${city}`;
-    if(country){
-        apiurl += `&country=${country}`;
-     }
+    let apiurl = `/weather?city=${encodeURIComponent(city)}`;
+    if (country) {
+        apiurl += `&country=${encodeURIComponent(country)}`;
+    }
      try{
         weatherDisplay.style.display = 'none';
         errorMessage.style.display = 'none';
@@ -35,11 +35,10 @@ async function getWeather(city,country){
         const data = await response.json();
         displayWeather(data);
      }catch(error){
-        console.error('error fetching wether',error);
+        console.error('error fetching weather', error);
         errorMessage.textContent = error.message;
         errorMessage.style.display = 'block';
      }
-     displayWeather(data);
 }
 
 function displayWeather(data){
@@ -51,7 +50,7 @@ function displayWeather(data){
     const hum = `Humidity: ${data.main.humidity}%`;
     const windSpeed = `Wind: ${data.wind.speed} m/s`;
 
-    const iconURL = `http://openweathermap.org/img/w/${iconCode}.png`;
+    const iconURL = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
     cityName.textContent = `${city}, ${country}`;
     temperature.textContent = temp;

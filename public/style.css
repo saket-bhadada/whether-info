@@ -1,90 +1,116 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #e0f7fa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  background-color: #e0f7fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .weather-card {
-    background: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
 }
 
 .search-form {
-    display: flex;
-    margin-bottom: 20px;
+  display: flex;
+  margin-bottom: 20px;
 }
 
 #city-input {
-    flex-grow: 1;
-    border: 2px solid #ddd;
-    border-radius: 5px 0 0 5px;
-    padding: 10px;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.2s;
+  flex-grow: 2;
+  border: 2px solid #ddd;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  padding: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
 #city-input:focus {
-    border-color: #007bff;
+  border-color: #007bff;
+  position: relative;
+  z-index: 2;
+}
+
+#country-input {
+  width: 60px;
+  border: 2px solid #ddd;
+  border-left: 1px solid #ddd; /* make the divider thinner? or just keep 2px */
+  border-left: none; /* Let the border be handled by the fact that city has no right border? No, if city has no right, country NEEDs left. */
+  border: 2px solid #ddd; 
+  border-right: none; /* Connect to button */
+  border-radius: 0;
+  padding: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#country-input:focus {
+  border-color: #007bff;
+  position: relative;
+  z-index: 2;
 }
 
 .search-form button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 0 20px;
-    font-size: 1rem;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    transition: background-color 0.2s;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  font-size: 1rem;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 .search-form button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 .weather-display {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 #weather-icon {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
 }
 
 #temperature {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #333;
-    margin: 10px 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0;
 }
 
 #description {
-    font-size: 1.2rem;
-    color: #555;
-    text-transform: capitalize;
-    margin-bottom: 20px;
+  font-size: 1.2rem;
+  color: #555;
+  text-transform: capitalize;
+  margin-bottom: 20px;
 }
 
-#humidity, #wind {
-    color: #777;
-    font-size: 1rem;
-    margin: 5px 0;
+#humidity,
+#wind {
+  color: #777;
+  font-size: 1rem;
+  margin: 5px 0;
 }
 
 .error-message {
-    color: #d9534f;
-    font-weight: bold;
-    margin-top: 15px;
+  color: #d9534f;
+  font-weight: bold;
+  margin-top: 15px;
 }

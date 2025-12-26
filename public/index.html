@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WHETHER</title>
+    <title>WEATHER</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="weather-card">
-        <form id="search-form">
+        <form id="search-form" class="search-form">
             <input type="text" id="city-input" placeholder="Enter Your City Name" required>
             <input type="text" id="country-input" placeholder="Country Code (e.g., US)" maxlength="2">
             <button type="submit" id="search-button">Search</button>
         </form>
-        <div class="whether-display" style="display: none;">
+        <div id="weather-display" style="display: none;">
             <h2 id="city-name"></h2>
-            <img src id="weather-icon" alt="Weather icon">
+            <img id="weather-icon" src="" alt="Weather icon">
             <p id="temperature"></p>
             <p id="description"></p>
             <p id="humidity"></p>
