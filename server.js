@@ -12,9 +12,15 @@ app.use(cors());
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+// Export the app for Vercel
+export default app;
+
+// Start the server locally
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
+    });
+}
 
 app.get('/weather', async (req, res) => {
     const city = req.query.city;
